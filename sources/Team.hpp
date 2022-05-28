@@ -7,6 +7,9 @@ class Team {
         string name;
         int talent;
     public:
+        Team() {
+            
+        }
         Team(string name, int talent) {
             this->name = name;
             this->talent = talent;
