@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 #include <random>
@@ -54,6 +56,7 @@ class League {
             nba.push_back("New Orleans Pelicans");
             nba.push_back("San Antonio Spurs");
 
+            srand(time(0));
             vector<int> nums;
             for(int i = 0; i < amount; i++) {
                 size_t t_num = rand() % 30;
