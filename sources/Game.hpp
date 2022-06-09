@@ -17,4 +17,17 @@ class Game {
             this->home_score = 55 + (rand() % 46) + home.talent;
             this->away_score = 50 + (rand() % 51) + away.talent;
         }
+        string winner() {
+            if(home_score > away_score) {
+                return home.name;
+            }
+            if(home_score < away_score) {
+                return away.name;
+            }
+            if(away.talent <= home.talent) { // they should win because they are the underdogs and still one
+                return away.name;
+            }
+            return home.name;
+            
+        }
 };
