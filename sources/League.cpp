@@ -5,6 +5,9 @@ vector<Team*> League::get_teams() {
 }
 
 void League::set_teams(vector<Team*> teams) {
+    if(teams.size() != LEAGUE_SIZE) {
+        throw invalid_argument("league must have exactly 20 teams");
+    }
     this->teams = teams;
 }
 
