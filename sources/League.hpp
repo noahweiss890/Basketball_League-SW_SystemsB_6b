@@ -21,7 +21,7 @@ class League {
                 throw invalid_argument("too many teams for the league");
             }
             for(Team* team : teams) {
-                this->teams.push_back(team);
+                this->teams.push_back(new Team(team->get_name(), team->get_talent()));
             }
             // fill the rest in with NBA team names
             league_constructor(LEAGUE_SIZE - teams.size());

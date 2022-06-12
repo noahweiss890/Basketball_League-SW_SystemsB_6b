@@ -19,7 +19,7 @@ run: test
 test: TestCounter.o Test.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-demo: Demo.o $(OBJECTS)
+main: Main.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: %.cpp $(HEADERS)
@@ -36,4 +36,4 @@ valgrind: test
 
 clean:
 	rm -f $(OBJECTS) *.o test* 
-	rm -f StudentTest*.cpp demo
+	rm -f StudentTest*.cpp demo main
