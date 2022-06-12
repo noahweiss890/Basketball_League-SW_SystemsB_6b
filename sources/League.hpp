@@ -8,13 +8,13 @@
 using namespace std;
 
 class League {
-    vector<Team> teams;
+    vector<Team*> teams;
     public:
         League() {
             league_constructor(20);
         }
-        League(vector<Team> teams) {
-            for(Team team : teams) {
+        League(vector<Team*> teams) {
+            for(Team* team : teams) {
                 this->teams.push_back(team);
             }
             league_constructor(20 - teams.size());
@@ -56,7 +56,6 @@ class League {
             nba.push_back("New Orleans Pelicans");
             nba.push_back("San Antonio Spurs");
 
-            srand(time(0));
             vector<int> nums;
             for(int i = 0; i < amount; i++) {
                 size_t t_num = rand() % 30;
@@ -65,12 +64,12 @@ class League {
                     t_num = rand() % 30;
                     // cout << "again tnum is: " << t_num << endl;
                 }
-                this->teams.push_back(Team(nba.at(t_num), std::rand() % 2));
+                this->teams.push_back(new Team(nba.at(t_num), (double) rand() / RAND_MAX));
                 nums.push_back(t_num);
             }
         }
     public:
-        vector<Team> get_teams() {
+        vector<Team*> get_teams() {
             return this->teams;
         }
 };
