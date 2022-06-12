@@ -3,10 +3,9 @@
 #include <iostream>
 #include "Team.hpp"
 
-#define MAX_SCORE 100
-#define MIN_HOME_SCORE 55
-#define MIN_AWAY_SCORE 50
-#define MAX_TALENT_POINTS 10
+constexpr int MAX_SCORE = 100;
+constexpr int MIN_HOME_SCORE = 55;
+constexpr int MIN_AWAY_SCORE = 50;
 
 using namespace std;
 
