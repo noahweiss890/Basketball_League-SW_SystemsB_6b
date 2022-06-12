@@ -4,8 +4,8 @@
 
 using namespace std;
 
-#define GAMES_AMOUNT 38
-#define MAX_TALENT_POINTS 10
+constexpr int GAMES_AMOUNT = 38;
+constexpr int MAX_TALENT_POINTS = 10;
 
 class Team {
     string name;
@@ -25,7 +25,7 @@ class Team {
             if(talent > 1 || talent < 0) {
                 throw invalid_argument("illegal talent level");
             }
-            this->name = name;
+            this->name = move(name);
             this->talent = talent;
             this->wins = 0;
             this->losses = 0;
@@ -38,18 +38,18 @@ class Team {
             this->total_win_by = 0;
             this->talent_wins = 0;
         }
-        string get_name();
-        double get_talent();
-        int get_wins();
-        int get_losses();
-        int get_points_scored();
-        int get_points_lost();
+        string get_name() const;
+        double get_talent() const;
+        int get_wins() const;
+        int get_losses() const;
+        int get_points_scored() const;
+        int get_points_lost() const;
         void update_talent_points(int t_points);
         void update_streak(int result);
-        void update_points(int scored, int lost, string winner);
+        void update_points(int scored, int lost, string const &winner);
         bool operator>(const Team& t) const;
-        int get_max_win_streak();
-        int get_max_lose_streak();
-        double get_total_win_by_avg();
-        int get_talent_wins();
+        int get_max_win_streak() const;
+        int get_max_lose_streak() const;
+        double get_total_win_by_avg() const;
+        int get_talent_wins() const;
 };
