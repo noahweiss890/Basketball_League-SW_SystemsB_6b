@@ -5,71 +5,29 @@
 #include <random>
 #include "Team.hpp"
 
+#define LEAGUE_SIZE 20
+#define NBA_SIZE 30
+
 using namespace std;
 
 class League {
     vector<Team*> teams;
     public:
         League() {
-            league_constructor(20);
+            league_constructor(LEAGUE_SIZE);
         }
         League(vector<Team*> teams) {
+            if(teams.size() > 20) {
+                throw invalid_argument("too many teams for the league");
+            }
             for(Team* team : teams) {
                 this->teams.push_back(team);
             }
-            league_constructor(20 - teams.size());
+            // fill the rest in with NBA team names
+            league_constructor(LEAGUE_SIZE - teams.size());
         }
+        vector<Team*> get_teams();
+        void set_teams(vector<Team*> teams);
     private:
-        void league_constructor(int amount) {
-            if(amount == 0) {
-                return;
-            }
-            vector<string> nba;
-            nba.push_back("Boston Celtics");
-            nba.push_back("Brooklyn Nets");
-            nba.push_back("New York Knicks");
-            nba.push_back("Philadelphia 76ers");
-            nba.push_back("Toronto Raptors");
-            nba.push_back("Chicago Bulls");
-            nba.push_back("Cleveland Cavaliers");
-            nba.push_back("Detroit Pistons");
-            nba.push_back("Indiana Pacers");
-            nba.push_back("Milwaukee Bucks");
-            nba.push_back("Atlanta Hawks");
-            nba.push_back("Charlotte Hornets");
-            nba.push_back("Miami Heat");
-            nba.push_back("Orlando Magic");
-            nba.push_back("Washington Wizards");
-            nba.push_back("Denver Nuggets");
-            nba.push_back("Minnesota Timberwolves");
-            nba.push_back("Oklahoma City Thunder");
-            nba.push_back("Portland Trail Blazers");
-            nba.push_back("Utah Jazz");
-            nba.push_back("Golden State Warriors");
-            nba.push_back("LA Clippers");
-            nba.push_back("Los Angeles Lakers");
-            nba.push_back("Phoenix Suns");
-            nba.push_back("Sacramento Kings");
-            nba.push_back("Dallas Mavericks");
-            nba.push_back("Houston Rockets");
-            nba.push_back("Memphis Grizzlies");
-            nba.push_back("New Orleans Pelicans");
-            nba.push_back("San Antonio Spurs");
-
-            vector<int> nums;
-            for(int i = 0; i < amount; i++) {
-                size_t t_num = rand() % 30;
-                // cout << "tnum is: " << t_num << endl;
-                while(find(nums.begin(), nums.end(), t_num) != nums.end()) {
-                    t_num = rand() % 30;
-                    // cout << "again tnum is: " << t_num << endl;
-                }
-                this->teams.push_back(new Team(nba.at(t_num), (double) rand() / RAND_MAX));
-                nums.push_back(t_num);
-            }
-        }
-    public:
-        vector<Team*> get_teams() {
-            return this->teams;
-        }
+        void league_constructor(int amount);
 };
